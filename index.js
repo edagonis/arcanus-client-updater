@@ -13,7 +13,7 @@ const filesUrl = "http://arcanus-client-updater.vercel.app/files/"
 
 // CONFIG END
 
-app.use("/", function (req, res) {
+app.use("*", function (req, res) {
   try {
     const filesToUpdate = glob.sync(resolve("files/**/*.*"))
 
