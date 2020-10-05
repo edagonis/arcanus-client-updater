@@ -9,7 +9,7 @@ const express = require("express")
 const app = express()
 
 // CONFIG
-const filesUrl = "http://localhost:3000/files/"
+const filesUrl = "http://arcanus-client-updater.vercel.app/files/"
 
 // CONFIG END
 
