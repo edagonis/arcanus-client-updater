@@ -8,12 +8,14 @@ const express = require("express")
 
 const app = express()
 
+app.use(express.static("public"))
+
 // CONFIG
 const filesUrl = "http://arcanus-client-updater.vercel.app/files/"
 
 // CONFIG END
 
-app.use("*", function (req, res) {
+app.get("/test", function (req, res) {
   try {
     const filesToUpdate = glob.sync(resolve("files/**/*.*"))
 
@@ -40,6 +42,4 @@ app.use("*", function (req, res) {
   }
 })
 
-app.listen(3000, function () {
-  console.log("listening!!!")
-})
+app.listen(3000)
