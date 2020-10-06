@@ -15,9 +15,9 @@ const filesUrl = "http://arcanus-client-updater.vercel.app/files/"
 
 // CONFIG END
 
-app.get("/test", function (req, res) {
+app.use("/", function (req, res) {
   try {
-    const filesToUpdate = glob.sync(resolve("files/**/*.*"))
+    const filesToUpdate = glob.sync(resolve("public/files/**/*.*"))
 
     let files = {}
     for (let i = 0; i < filesToUpdate.length; i++) {
@@ -42,4 +42,4 @@ app.get("/test", function (req, res) {
   }
 })
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
