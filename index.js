@@ -17,14 +17,15 @@ const filesUrl = "http://arcanus-client-updater.vercel.app/files/"
 
 app.use("/", function (req, res) {
   try {
-    const filesToUpdate = glob.sync(resolve("public") + "/files/**/*.*")
+    const publicFolder = resolve("public")
+    const filesToUpdate = glob.sync(publicFolder + "/files/**/*.*")
 
     let files = {}
     for (let i = 0; i < filesToUpdate.length; i++) {
       const current = filesToUpdate[i]
       const content = fileSystem.readFileSync(current)
 
-      const relativePath = current.split(resolve("files/") + "/")[1]
+      const relativePath = current.split(publicFolder + "/files/")[1]
       const checksum = crc32b(content).toString("hex")
       files[relativePath] = checksum
     }
