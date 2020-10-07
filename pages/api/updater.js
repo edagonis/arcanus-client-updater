@@ -4,18 +4,12 @@ const fileSystem = require("fs")
 const { resolve } = require("path")
 const glob = require("glob")
 
-const express = require("express")
-
-const app = express()
-
-app.use(express.static(resolve("public")))
-
 // CONFIG
 const filesUrl = "http://arcanus-client-updater.vercel.app/files/"
 
 // CONFIG END
 
-app.use("/", function (req, res) {
+export default (req, res) => {
   try {
     const publicFolder = resolve("public")
     const filesToUpdate = glob.sync(publicFolder + "/files/**/*.*")
@@ -36,11 +30,10 @@ app.use("/", function (req, res) {
       keepFiles: true,
     }
 
-    return res.status(200).json(data)
+    res.statusCode = 200
+    return res.json(data)
   } catch (e) {
     console.log(e)
     return res.status(400).json({ status: 400, error: e })
   }
-})
-
-app.listen(process.env.PORT || 3000)
+}
