@@ -5,7 +5,7 @@ const { resolve } = require("path")
 const glob = require("glob")
 
 // CONFIG
-const filesUrl = "http://arcanus-client-updater.vercel.app/files/"
+const filesUrl = "https://arcanus-client-updater.vercel.app/files/"
 
 // CONFIG END
 
@@ -27,7 +27,7 @@ export default (req, res) => {
     const data = {
       url: filesUrl,
       files: files,
-      keepFiles: true,
+      keepFiles: false,
     }
 
     res.statusCode = 200
